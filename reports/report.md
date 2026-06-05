@@ -218,14 +218,14 @@ indexes on `ratings(user_id)` and `ratings(movie_id)`.
 
 | Query | Neo4j | SQLite | Winner |
 |-------|-------|--------|--------|
-| Q2 — Top movies by genre | ~15 ms | ~8 ms | SQLite |
-| Q3 — Collaborative filter | ~40 ms | ~120 ms | Neo4j |
-| Q8 — Multi-hop chain (depth 3) | ~84 ms | ~20 800 ms | **Neo4j** |
-| Q9 — Pairwise user overlap | ~25 000 ms | ~14 100 ms | SQLite |
+| Q2 — Top movies by genre | ~138.0 ms | ~30.4 ms | SQLite |
+| Q3 — Collaborative filter | ~328.6 ms | ~44.7 ms | SQLite |
+| Q8 — Multi-hop chain (depth 3) | ~80.1 ms | ~23 271.0 ms | **Neo4j** |
+| Q9 — Pairwise user overlap | ~26 514.0 ms | ~15 079.5 ms | SQLite |
 
 **Key findings:**
 
-**Neo4j wins on traversal.** Q8 is the defining result: ~84ms vs ~20 seconds.
+**Neo4j wins on traversal.** Q8 is the defining result: ~80.1ms vs ~23 seconds.
 The graph engine follows relationship pointers directly; SQL must materialise a
 three-level Cartesian product. Increasing traversal depth from 3 to 4 costs
 Neo4j one character change; SQL requires an entirely new join level.
@@ -283,7 +283,29 @@ Local Docker URI format: `bolt://localhost:7687`
 
 ---
 
-## 9. Conclusions
+## 9. Screenshots
+
+### Graph Visualization
+
+```cypher
+MATCH (u:User)-[:RATED]->(m:Movie)-[:IN_GENRE]->(g:Genre) RETURN u,m,g LIMIT 30
+```
+![Graph][docs/screenshots/graph.png]
+
+### Ingest
+![Ingest][docs/screenshots/ingest.png]
+
+### Benchmark
+![Benchmark][docs/screenshots/benchmark.png]
+
+### Frontend
+![Frontend][docs/screenshots/frontend.png]
+
+### Database dump
+![Dump][docs/screenshots/dump.png]
+
+
+## 10. Conclusions
 
 Graph databases provide a natural fit for recommendation workloads that require
 multi-hop traversals and pattern matching. The Q8 result (84ms vs 20 seconds at
