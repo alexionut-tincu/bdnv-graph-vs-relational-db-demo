@@ -27,6 +27,8 @@ Tabulate: 0.10.0s
 
 ## 3. Graph Model
 
+![Model](docs/screenshots/model.png)
+
 ### Node labels and key properties
 
 | Label   | Properties                                          |
@@ -290,19 +292,19 @@ Local Docker URI format: `bolt://localhost:7687`
 ```cypher
 MATCH (u:User)-[:RATED]->(m:Movie)-[:IN_GENRE]->(g:Genre) RETURN u,m,g LIMIT 30
 ```
-![Graph][docs/screenshots/graph.png]
+![Graph](docs/screenshots/graph.png)
 
 ### Ingest
-![Ingest][docs/screenshots/ingest.png]
+![Ingest](docs/screenshots/ingest.png)
 
 ### Benchmark
-![Benchmark][docs/screenshots/benchmark.png]
+![Benchmark](docs/screenshots/benchmark.png)
 
 ### Frontend
-![Frontend][docs/screenshots/frontend.png]
+![Frontend](docs/screenshots/frontend.png)
 
 ### Database dump
-![Dump][docs/screenshots/dump.png]
+![Dump](docs/screenshots/dump.png)
 
 
 ## 10. Conclusions

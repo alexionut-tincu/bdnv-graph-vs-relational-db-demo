@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="i72C6rLp7z-SzRoPF7jn">
+    <mxGraphModel dx="778" dy="463" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="1KbIxhSyn5xGr1ekxJYm-3" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" value="Movie" vertex="1">
+          <mxGeometry height="120" width="160" x="390" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="1KbIxhSyn5xGr1ekxJYm-4" parent="1KbIxhSyn5xGr1ekxJYm-3" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" value="&lt;div&gt;movie_id&lt;/div&gt;&lt;div&gt;title&lt;/div&gt;&lt;div&gt;year&lt;/div&gt;&lt;div&gt;avg_rating&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="160" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="1KbIxhSyn5xGr1ekxJYm-11" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" value="Genre" vertex="1">
+          <mxGeometry height="120" width="160" x="650" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="1KbIxhSyn5xGr1ekxJYm-12" parent="1KbIxhSyn5xGr1ekxJYm-11" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" value="name" vertex="1">
+          <mxGeometry height="70" width="160" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="1KbIxhSyn5xGr1ekxJYm-29" edge="1" parent="1" source="1KbIxhSyn5xGr1ekxJYm-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="1KbIxhSyn5xGr1ekxJYm-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1KbIxhSyn5xGr1ekxJYm-30" connectable="0" parent="1KbIxhSyn5xGr1ekxJYm-29" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;div&gt;RATED (rating, timestamp)&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.0812" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1KbIxhSyn5xGr1ekxJYm-13" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" value="User" vertex="1">
+          <mxGeometry height="120" width="160" x="390" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="1KbIxhSyn5xGr1ekxJYm-14" parent="1KbIxhSyn5xGr1ekxJYm-13" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" value="&lt;div&gt;user_id&lt;/div&gt;&lt;div&gt;age&lt;/div&gt;&lt;div&gt;gender&lt;/div&gt;&lt;div&gt;occupation&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="160" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="1KbIxhSyn5xGr1ekxJYm-27" edge="1" parent="1" source="1KbIxhSyn5xGr1ekxJYm-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="1KbIxhSyn5xGr1ekxJYm-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1KbIxhSyn5xGr1ekxJYm-28" connectable="0" parent="1KbIxhSyn5xGr1ekxJYm-27" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="IN_GENRE" vertex="1">
+          <mxGeometry relative="1" x="-0.0312" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
