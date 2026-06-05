@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MovieLens Graph Explorer</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; background: #f9f9f9; }
+    h1 { color: #2d3748; }
+    .card { background: white; border-radius: 8px; padding: 20px; margin: 16px 0; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
+    label { font-weight: 600; display: block; margin-bottom: 4px; }
+    input, select { padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-right: 8px; width: 120px; }
+    button { padding: 8px 16px; background: #4f46e5; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #4338ca; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.9em; }
+    th { background: #e2e8f0; text-align: left; padding: 6px 10px; }
+    td { padding: 6px 10px; border-bottom: 1px solid #eee; }
+    .meta { color: #888; font-size: 0.8em; margin-top: 6px; }
+    .error { color: #e53e3e; }
+  </style>
+</head>
+<body>
+  <h1>🎬 MovieLens Graph Explorer</h1>
+
+  <div class="card">
+    <label>Query type</label>
+    <select id="qtype" onchange="updateInputs()">
+      <option value="collab">Collaborative recommendations (user)</option>
+      <option value="genre_recs">Genre-based recommendations (user)</option>
+      <option value="similar">Similar-taste users (user)</option>
+      <option value="path">Shortest path between users</option>
+      <option value="top_genre">Top movies in genre</option>
+    </select>
+  </div>
+
+  <div class="card" id="inputs"></div>
+
+  <button onclick="runQuery()">Run Query</button>
+
+  <div class="card" id="results" style="display:none">
+    <div id="meta" class="meta"></div>
+    <div id="table"></div>
+  </div>
+
+  <script>
+    const BASE = "http://localhost:5000";
+
+    const CONFIGS = {
+      collab:     { label: "User ID", fields: ["uid"], url: uid => `${BASE}/user/${uid}/recommendations/collaborative` },
+      genre_recs: { label: "User ID", fields: ["uid"], url: uid => `${BASE}/user/${uid}/recommendations/genre` },
+      similar:    { label: "User ID", fields: ["uid"], url: uid => `${BASE}/user/${uid}/similar-users` },
+      path:       { fields: ["uid1","uid2"], url: (a,b) => `${BASE}/path?uid1=${a}&uid2=${b}` },
+      top_genre:  { fields: ["genre"],      url: g   => `${BASE}/genre/${g}/top` },
+    };
+
+    function updateInputs() {
+      const cfg = CONFIGS[document.getElementById("qtype").value];
+      document.getElementById("inputs").innerHTML = cfg.fields.map(f =>
+        `<label>${f}</label><input id="f_${f}" placeholder="${f}" value="${f==='genre'?'Action':'1'}">`
+      ).join("");
+    }
+
+    async function runQuery() {
+      const qtype = document.getElementById("qtype").value;
+      const cfg = CONFIGS[qtype];
+      const vals = cfg.fields.map(f => document.getElementById(`f_${f}`).value.trim());
+      const url = cfg.url(...vals);
+      const res = document.getElementById("results");
+      const tableDiv = document.getElementById("table");
+      const meta = document.getElementById("meta");
+      res.style.display = "block";
+      tableDiv.innerHTML = "Loading…";
+      try {
+        const r = await fetch(url);
+        const data = await r.json();
+        meta.textContent = `${data.count} rows · ${data.elapsed_ms} ms`;
+        if (!data.rows || data.rows.length === 0) { tableDiv.innerHTML = "<em>No results.</em>"; return; }
+        const keys = Object.keys(data.rows[0]);
+        tableDiv.innerHTML = `<table>
+          <thead><tr>${keys.map(k=>`<th>${k}</th>`).join("")}</tr></thead>
+          <tbody>${data.rows.map(row=>`<tr>${keys.map(k=>`<td>${row[k]??""}</td>`).join("")}</tr>`).join("")}</tbody>
+        </table>`;
+      } catch(e) {
+        tableDiv.innerHTML = `<span class="error">Error: ${e.message}. Is the API running?</span>`;
+      }
+    }
+
+    updateInputs();
+  </script>
+</body>
+</html>
