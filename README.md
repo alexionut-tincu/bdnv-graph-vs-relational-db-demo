@@ -78,7 +78,7 @@ synthetic dataset of identical structure (500 movies, 943 users, 100 000 ratings
 | Q5 | Shortest path between users | `shortest_path_between_users` | — |
 | Q6 | Friends-of-friends genre overlap | `friends_of_friends_genre_overlap` | — |
 | Q7 | Genre-based recommendations | `genre_based_recommendations` | — |
-| Q8 | Multi-hop co-rating chain (depth 3) | `multi_hop_corating_chain` | ✅ benchmarked — Neo4j ~84ms vs SQL ~20s |
+| Q8 | Multi-hop co-rating chain (depth 3) | `multi_hop_corating_chain` | ✅ benchmarked — Neo4j ~80ms vs SQL ~23s |
 | Q9 | Pairwise user overlap | `triangle_detection` | ✅ benchmarked — SQL wins (bulk scan) |
 
 ## API endpoints
