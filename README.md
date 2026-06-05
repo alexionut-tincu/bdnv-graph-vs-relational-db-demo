@@ -51,8 +51,8 @@ For local Docker: `NEO4J_URI=bolt://localhost:7687`
 ## Dataset
 
 The real MovieLens 100K dataset can be downloaded manually from
-https://files.grouplens.org/datasets/movielens/ml-latest-100k.zip and placed at
-`data/ml-latest-100k.zip`. If absent, `data_prep.py` automatically generates a
+https://files.grouplens.org/datasets/movielens/ml-latest-small.zip and placed at
+`data/ml-latest-small.zip`. If absent, `data_prep.py` automatically generates a
 synthetic dataset of identical structure (500 movies, 943 users, 100 000 ratings).
 
 ## Graph model

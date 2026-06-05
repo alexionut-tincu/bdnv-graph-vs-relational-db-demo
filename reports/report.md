@@ -1,4 +1,4 @@
-# MovieLens Graph Database — Project Report
+# Graph vs Relational Database Demo - Project Report
 
 ## 1. Overview
 
@@ -10,7 +10,22 @@ timed; four are benchmarked directly against SQLite equivalents.
 
 ---
 
-## 2. Graph Model
+## 2. Setup Used
+Laptop model: Lenovo ThinkPad T490s
+CPU: Intel(R) Core(TM) i5-8565U (8) @ 3.90GHz
+GPU: Integrated Intel UHD Graphics 620 @ 1.10GHz
+Memory: 8 GiB
+OS: Arch Linux x86_64
+Kernel: Linux 6.18.18-1-lts
+Python: 3.14.3
+Neo4j: 6.2.0
+Pandas: 3.0.3
+Flask: 3.1.3
+Tabulate: 0.10.0s
+
+---
+
+## 3. Graph Model
 
 ### Node labels and key properties
 
@@ -37,7 +52,7 @@ into a graph reachability problem that Cypher expresses in one line.
 
 ---
 
-## 3. Queries
+## 4. Queries
 
 ### Q1 — Movies rated by a user
 
@@ -182,7 +197,7 @@ ORDER BY shared DESC LIMIT 10
 
 ---
 
-## 4. Relational Equivalent
+## 5. Relational Equivalent
 
 The SQLite model uses three flat tables (`movies`, `users`, `ratings`) with
 indexes on `ratings(user_id)` and `ratings(movie_id)`.
@@ -199,7 +214,7 @@ indexes on `ratings(user_id)` and `ratings(movie_id)`.
 
 ---
 
-## 5. Performance Results
+## 6. Performance Results
 
 | Query | Neo4j | SQLite | Winner |
 |-------|-------|--------|--------|
@@ -227,7 +242,7 @@ making Neo4j the better long-term fit despite the Q9 result.
 
 ---
 
-## 6. API and Frontend
+## 7. API and Frontend
 
 The Flask API (`api.py`) exposes all queries as GET endpoints. Every response
 includes `rows`, `count`, and `elapsed_ms`.
@@ -251,7 +266,7 @@ No build step — open directly in a browser while `python api.py` is running.
 
 ---
 
-## 7. Running the Project
+## 8. Running the Project
 
 ```bash
 pip install -r requirements.txt
@@ -268,7 +283,7 @@ Local Docker URI format: `bolt://localhost:7687`
 
 ---
 
-## 8. Conclusions
+## 9. Conclusions
 
 Graph databases provide a natural fit for recommendation workloads that require
 multi-hop traversals and pattern matching. The Q8 result (84ms vs 20 seconds at
